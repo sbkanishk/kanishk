@@ -1,9 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const links = document.querySelectorAll('nav ul li a');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(event) {
-            alert(`You clicked on ${event.target.textContent}!`);
-        });
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    // Automatically update the copyright year
+    const yearSpan = document.getElementById('year');
+    const currentYear = new Date().getFullYear();
+    yearSpan.textContent = currentYear;
+
+    console.log("Welcome to Shashi Bhushan Kanishk's Terminal.");
 });
