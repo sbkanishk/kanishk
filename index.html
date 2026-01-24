@@ -9,111 +9,63 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav>
     <div class="logo">Kanishk</div>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#playground">Games</a></li>
-      <li><a href="#projects">Work</a></li>
+      <li><a href="#playground">Playground</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section class="hero section">
     <div class="container hero-content fade-in">
       <h1>Architecting logic<br>through numbers.</h1>
-      <p>Applied Mathematics student exploring the intersection of theory, data, and real-world code.</p>
+      <p>Applied Mathematics student exploring theory, data, and code.</p>
       <div class="buttons">
-        <a href="#projects" class="btn primary">View Work</a>
+        <a href="#playground" class="btn primary">Play Games</a>
         <a href="https://github.com/sbkanishk" target="_blank" class="btn secondary">GitHub</a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section about fade-in">
-    <div class="container">
-      <h2>01. The Narrative</h2>
-      <p>I thrive in the space between abstract proofs and practical systems. Whether solving ODEs or building data-driven applications, my focus is always clarity.</p>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section fade-in">
-    <div class="container">
-      <h2>02. Technical Arsenal</h2>
-      <div class="skills">
-        <div class="skill-card"><h3>Languages</h3><p>Python, C++, R, Java</p></div>
-        <div class="skill-card"><h3>Focus Areas</h3><p>Mathematical Modeling, Data Analysis</p></div>
-        <div class="skill-card"><h3>Tools</h3><p>Figma, Canva, Lightroom</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE PLAYGROUND (GAMES) -->
+  <!-- GAMES SECTION -->
   <section id="playground" class="section fade-in">
     <div class="container">
-      <h2>03. The Playground</h2>
-      <p style="margin-bottom: 2rem;">Interactive logic experiments. Choose a challenge:</p>
+      <h2>The Playground</h2>
       <div class="project-grid">
-        <div class="project-card game-card" onclick="openGame('flappy')">
-          <div class="game-icon">🐦</div>
+        <div class="project-card" onclick="openGame('flappy')">
           <h3>Flappy Math</h3>
-          <p>Guide your logic through the gaps. Space/Click to fly.</p>
-          <button class="btn primary">Play Flappy</button>
+          <p>Click to fly. Spacebar to jump.</p>
+          <button class="btn primary">Play</button>
         </div>
-        <div class="project-card game-card" onclick="openGame('runner')">
-          <div class="game-icon">🏃</div>
+        <div class="project-card" onclick="openGame('runner')">
           <h3>Subway Solver</h3>
-          <p>Dodge logic errors in 3 lanes. Arrow keys to move.</p>
-          <button class="btn primary">Play Runner</button>
+          <p>Dodge obstacles. Arrow keys to move.</p>
+          <button class="btn primary">Play</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section projects fade-in">
-    <div class="container">
-      <h2>04. Selected Work</h2>
-      <div class="project-grid">
-        <div class="project-card"><h3>Portfolio</h3><p>Built with HTML, CSS, and JS.</p></div>
-        <div class="project-card"><h3>Math Model</h3><p>Numerical methods via Python.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section fade-in">
-    <div class="container">
-      <h2>05. Contact</h2>
-      <p><a href="mailto:your-email@example.com">your-email@example.com</a></p>
-    </div>
-  </section>
-
-  <footer>© 2026 Shashi Bhushan Kanishk. Crafted with logic.</footer>
-
-  <!-- MASTER GAME OVERLAY -->
+  <!-- GAME OVERLAY (DON'T TOUCH THESE IDs) -->
   <div id="master-game-overlay">
-    <div class="game-header">
-      <div id="game-score-label">Score: 0</div>
-      <button onclick="closeGame()" class="close-btn">&times;</button>
+    <div id="game-ui-header">
+      <span id="score-text">Score: 0</span>
+      <button onclick="closeGame()" style="background:none; border:none; color:white; font-size:2rem; cursor:pointer;">&times;</button>
     </div>
-    <div id="game-stage">
+    <div style="position:relative;">
       <canvas id="mainCanvas"></canvas>
-      <div id="game-ui-box">
-        <h1 id="ui-title">Game Title</h1>
-        <p id="ui-desc">Loading...</p>
-        <button id="ui-start-btn" class="btn primary">Start Mission</button>
+      <div id="menu-overlay">
+        <h1 id="menu-title">Select Game</h1>
+        <button id="start-btn" class="btn primary">Start</button>
       </div>
     </div>
   </div>
 
+  <footer>© 2026 Shashi Bhushan Kanishk</footer>
+
   <script src="kanishk.js"></script>
 </body>
 </html>
-
-
