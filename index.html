@@ -102,6 +102,19 @@
       </div>
     </div>
   </section>
+  <!-- Add this right before </body> -->
+<div id="game-overlay">
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="game-ui">
+            <h1>Flappy Kanishk</h1>
+            <p>Avoid the "Logic Errors" (Pipes)!</p>
+            <button onclick="startGame()" class="btn primary">Start Game</button>
+            <button onclick="closeGame()" class="btn secondary">Close</button>
+        </div>
+        <div id="score">0</div>
+    </div>
+</div>
 
   <!-- CONTACT -->
   <section id="contact" class="section fade-in">
@@ -123,5 +136,8 @@
   </footer>
 
   <script src="kanishk.js"></script>
+
+  
 </body>
 </html>
+
