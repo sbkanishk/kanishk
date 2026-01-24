@@ -1,71 +1,109 @@
 :root {
-    --bg: #0f1115;
-    --text: #e0e0e0;
-    --accent: #64ffda;
-    --card-bg: #1a1d23;
+    --bg-dark: #050505;
+    --glass: rgba(255, 255, 255, 0.03);
+    --accent: #a374ff;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
 }
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: 'Georgia', serif; /* Academic feel */
-    line-height: 1.6;
-    margin: 0;
-    padding: 0 10%;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    padding: 0 8%;
+}
+
+/* Inspiration: The Deep Gradient Background */
+.gradient-bg {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 80% 20%, #2a1b4d 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, #111827 0%, transparent 50%);
+    z-index: -1;
+    filter: blur(80px);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 2rem 0;
-    font-family: monospace;
+    align-items: center;
+    padding: 40px 0;
 }
 
 .status-pill {
-    background: #23272e;
-    padding: 4px 12px;
-    border-radius: 20px;
+    background: rgba(163, 116, 255, 0.1);
     border: 1px solid var(--accent);
     color: var(--accent);
-    font-size: 0.8rem;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-header h1 {
-    font-size: 3rem;
-    margin-bottom: 0;
+/* Inspiration: Bold Typography */
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    font-weight: 900;
+    margin-top: 10vh;
+    letter-spacing: -2px;
 }
 
-.subtitle {
-    font-family: monospace;
+.hero h1 span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
     color: var(--accent);
 }
 
-section { margin: 4rem 0; }
+.hero-sub {
+    max-width: 600px;
+    margin-top: 2rem;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+}
 
-h2 {
-    font-family: monospace;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
+/* Inspiration: Glassmorphism Cards */
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    border-radius: 24px;
+    margin: 10vh 0;
+}
+
+.habit-tags span {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 10vh;
 }
 
-.card {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent);
+.skill-card {
+    padding: 2rem;
+    border-top: 1px solid var(--accent);
+    background: linear-gradient(to bottom, rgba(163, 116, 255, 0.05), transparent);
 }
 
 footer {
-    padding: 4rem 0;
-    font-family: monospace;
+    padding-bottom: 40px;
+    color: var(--text-dim);
     font-size: 0.9rem;
-    opacity: 0.6;
 }
-
-a { color: var(--accent); text-decoration: none; }
