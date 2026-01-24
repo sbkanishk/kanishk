@@ -4,10 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kanishk | Portfolio</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="kanishk.css" />
 </head>
 <body>
@@ -18,6 +15,7 @@
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#playground">Games</a></li>
       <li><a href="#projects">Work</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -27,10 +25,7 @@
   <section class="hero section">
     <div class="container hero-content fade-in">
       <h1>Architecting logic<br>through numbers.</h1>
-      <p>
-        Applied Mathematics student exploring the intersection of theory,
-        data, and real-world code.
-      </p>
+      <p>Applied Mathematics student exploring the intersection of theory, data, and real-world code.</p>
       <div class="buttons">
         <a href="#projects" class="btn primary">View Work</a>
         <a href="https://github.com/sbkanishk" target="_blank" class="btn secondary">GitHub</a>
@@ -42,15 +37,7 @@
   <section id="about" class="section about fade-in">
     <div class="container">
       <h2>01. The Narrative</h2>
-      <p>
-        I thrive in the space between abstract proofs and practical systems.
-        Whether solving Ordinary Differential Equations or building data-driven
-        applications, my focus is always clarity and structure.
-      </p>
-      <p>
-        Outside academics: football evenings, relentless reading,
-        and volunteering through NSS.
-      </p>
+      <p>I thrive in the space between abstract proofs and practical systems. Whether solving ODEs or building data-driven applications, my focus is always clarity.</p>
     </div>
   </section>
 
@@ -58,21 +45,31 @@
   <section id="skills" class="section fade-in">
     <div class="container">
       <h2>02. Technical Arsenal</h2>
-
       <div class="skills">
-        <div class="skill-card">
-          <h3>Languages</h3>
-          <p>Python, C++, R, Java</p>
-        </div>
+        <div class="skill-card"><h3>Languages</h3><p>Python, C++, R, Java</p></div>
+        <div class="skill-card"><h3>Focus Areas</h3><p>Mathematical Modeling, Data Analysis</p></div>
+        <div class="skill-card"><h3>Tools</h3><p>Figma, Canva, Lightroom</p></div>
+      </div>
+    </div>
+  </section>
 
-        <div class="skill-card">
-          <h3>Focus Areas</h3>
-          <p>Mathematical Modeling, Data Analysis, Algorithms</p>
+  <!-- THE PLAYGROUND (GAMES) -->
+  <section id="playground" class="section fade-in">
+    <div class="container">
+      <h2>03. The Playground</h2>
+      <p style="margin-bottom: 2rem;">Interactive logic experiments. Choose a challenge:</p>
+      <div class="project-grid">
+        <div class="project-card game-card" onclick="openGame('flappy')">
+          <div class="game-icon">🐦</div>
+          <h3>Flappy Math</h3>
+          <p>Guide your logic through the gaps. Space/Click to fly.</p>
+          <button class="btn primary">Play Flappy</button>
         </div>
-
-        <div class="skill-card">
-          <h3>Creative Tools</h3>
-          <p>Figma, Canva, Adobe Lightroom</p>
+        <div class="project-card game-card" onclick="openGame('runner')">
+          <div class="game-icon">🏃</div>
+          <h3>Subway Solver</h3>
+          <p>Dodge logic errors in 3 lanes. Arrow keys to move.</p>
+          <button class="btn primary">Play Runner</button>
         </div>
       </div>
     </div>
@@ -81,63 +78,42 @@
   <!-- PROJECTS -->
   <section id="projects" class="section projects fade-in">
     <div class="container">
-      <h2>03. Selected Work</h2>
-
+      <h2>04. Selected Work</h2>
       <div class="project-grid">
-        <div class="project-card">
-          <h3>Portfolio Website</h3>
-          <p>
-            Personal portfolio built with HTML, CSS, and JavaScript,
-            focused on clean structure and performance.
-          </p>
-        </div>
-
-        <div class="project-card">
-          <h3>Mathematical Modeling Project</h3>
-          <p>
-            Numerical methods and simulations for real-world systems
-            using Python and scientific libraries.
-          </p>
-        </div>
+        <div class="project-card"><h3>Portfolio</h3><p>Built with HTML, CSS, and JS.</p></div>
+        <div class="project-card"><h3>Math Model</h3><p>Numerical methods via Python.</p></div>
       </div>
     </div>
   </section>
-  <!-- Add this right before </body> -->
-<div id="game-overlay">
-    <div id="game-container">
-        <canvas id="gameCanvas"></canvas>
-        <div id="game-ui">
-            <h1>Flappy Kanishk</h1>
-            <p>Avoid the "Logic Errors" (Pipes)!</p>
-            <button onclick="startGame()" class="btn primary">Start Game</button>
-            <button onclick="closeGame()" class="btn secondary">Close</button>
-        </div>
-        <div id="score">0</div>
-    </div>
-</div>
 
   <!-- CONTACT -->
   <section id="contact" class="section fade-in">
     <div class="container">
-      <h2>04. Contact</h2>
-      <p>
-        Reach out if you want to collaborate, discuss math,
-        or build something that actually makes sense.
-      </p>
-      <p>
-        <a href="mailto:your-email@example.com">your-email@example.com</a>
-      </p>
+      <h2>05. Contact</h2>
+      <p><a href="mailto:your-email@example.com">your-email@example.com</a></p>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Shashi Bhushan Kanishk. Crafted with logic and curiosity.
-  </footer>
+  <footer>© 2026 Shashi Bhushan Kanishk. Crafted with logic.</footer>
+
+  <!-- MASTER GAME OVERLAY -->
+  <div id="master-game-overlay">
+    <div class="game-header">
+      <div id="game-score-label">Score: 0</div>
+      <button onclick="closeGame()" class="close-btn">&times;</button>
+    </div>
+    <div id="game-stage">
+      <canvas id="mainCanvas"></canvas>
+      <div id="game-ui-box">
+        <h1 id="ui-title">Game Title</h1>
+        <p id="ui-desc">Loading...</p>
+        <button id="ui-start-btn" class="btn primary">Start Mission</button>
+      </div>
+    </div>
+  </div>
 
   <script src="kanishk.js"></script>
-
-  
 </body>
 </html>
+
 
