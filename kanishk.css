@@ -1,127 +1,71 @@
-/* Reset and Base Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root {
+    --bg: #0f1115;
+    --text: #e0e0e0;
+    --accent: #64ffda;
+    --card-bg: #1a1d23;
 }
 
 body {
-    background-color: #2c2c2c; /* Dark background outside the paper */
-    font-family: 'Courier Prime', 'Courier New', monospace; /* Typewriter font */
-    color: #333;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif; /* Academic feel */
     line-height: 1.6;
+    margin: 0;
+    padding: 0 10%;
 }
 
-/* The "Paper" Container */
-.paper-container {
-    background-color: #f4e4bc; /* Old paper color */
-    max-width: 800px;
-    width: 100%;
-    padding: 60px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    border: 1px solid #d3c6a0;
-    position: relative;
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+    font-family: monospace;
 }
 
-/* Typography */
-h1 {
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    color: #222;
+.status-pill {
+    background: #23272e;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 0;
 }
 
 .subtitle {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 20px;
+    font-family: monospace;
+    color: var(--accent);
 }
+
+section { margin: 4rem 0; }
 
 h2 {
-    margin-top: 40px;
-    border-bottom: 2px solid #333;
-    display: inline-block;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
+    font-family: monospace;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
 }
 
-h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-/* Navigation */
-nav ul {
-    list-style: none;
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px dashed #555;
-    border-bottom: 1px dashed #555;
-    margin: 30px 0;
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
 }
 
-nav li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #8b0000; /* Dark red on hover */
-    text-decoration: underline;
-}
-
-/* Sections */
-.entry {
-    margin-bottom: 20px;
-    padding-left: 20px;
-    border-left: 3px solid #333;
-}
-
-.skill-list {
-    list-style: square;
-    padding-left: 20px;
-    columns: 2; /* Split skills into 2 columns */
-}
-
-/* Decorative Lines */
-.double-line {
-    border: 0;
-    border-top: 3px double #333;
-    margin: 20px 0;
-}
-
-/* Footer */
 footer {
-    text-align: center;
+    padding: 4rem 0;
+    font-family: monospace;
     font-size: 0.9rem;
-    margin-top: 50px;
-    color: #555;
+    opacity: 0.6;
 }
 
-/* Responsive design for phones */
-@media (max-width: 600px) {
-    .paper-container {
-        padding: 20px;
-    }
-    
-    nav li {
-        display: block;
-        margin: 10px 0;
-    }
-    
-    .skill-list {
-        columns: 1;
-    }
-}
+a { color: var(--accent); text-decoration: none; }
