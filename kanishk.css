@@ -1,7 +1,6 @@
 /* =========================
    RESET + BASE
 ========================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -21,9 +20,22 @@ body {
 }
 
 /* =========================
+   ANIMATIONS & REVEALS
+========================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
    TYPOGRAPHY
 ========================= */
-
 h1, h2, h3 {
   font-family: 'Space Grotesk', sans-serif;
   letter-spacing: -0.02em;
@@ -38,6 +50,13 @@ h1 {
 h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  cursor: default;
+  transition: color 0.3s;
+}
+
+/* Easter Egg: Numbers spin on hover */
+h2:hover {
+  color: #6366f1;
 }
 
 p {
@@ -47,102 +66,18 @@ p {
 }
 
 /* =========================
-   LINKS
+   LINKS & BUTTONS
 ========================= */
-
 a {
   color: #eaeaea;
   text-decoration: none;
   position: relative;
 }
 
-a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: #6366f1;
-  transition: width 0.3s ease;
-}
-
-a:hover::after {
-  width: 100%;
-}
-
-/* =========================
-   LAYOUT HELPERS
-========================= */
-
-.section {
-  padding: 6rem 8vw;
-}
-
-.container {
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1.5rem 8vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(11, 13, 18, 0.6);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-}
-
-nav .logo {
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-nav ul {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background: radial-gradient(
-    circle at top left,
-    #4f46e5,
-    #0b0d12 60%
-  );
-}
-
-.hero-content {
-  max-width: 800px;
-}
-
-.hero p {
-  margin: 1.5rem 0 2.5rem;
-  font-size: 1.15rem;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
 .buttons {
   display: flex;
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .btn {
@@ -151,6 +86,8 @@ nav ul {
   border: 1px solid #6366f1;
   font-size: 0.95rem;
   transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
 }
 
 .btn.primary {
@@ -168,21 +105,57 @@ nav ul {
 }
 
 /* =========================
-   ABOUT / NARRATIVE
+   NAVBAR
 ========================= */
-
-.about {
-  background-color: #0f1220;
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 8vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(11, 13, 18, 0.8);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.about p {
-  margin-top: 1rem;
+.logo {
+  font-weight: 600;
+  font-size: 1.2rem;
+  cursor: help; /* Hint that it's clickable */
+  user-select: none;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
 }
 
 /* =========================
-   SKILLS
+   HERO
 ========================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at 20% 30%, #1e1b4b 0%, #0b0d12 70%);
+}
 
+.section {
+  padding: 8rem 8vw;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* =========================
+   SKILLS (With Glow Effect)
+========================= */
 .skills {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -191,81 +164,91 @@ nav ul {
 }
 
 .skill-card {
-  padding: 2rem;
+  padding: 2.5rem;
   background: #121526;
-  border-radius: 16px;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, border 0.3s ease;
-}
-
-.skill-card:hover {
-  transform: translateY(-6px);
-  border-color: #6366f1;
-}
-
-.skill-card h3 {
-  margin-bottom: 0.8rem;
-  font-size: 1.2rem;
-}
-
-/* =========================
-   PROJECTS (PLACEHOLDER READY)
-========================= */
-
-.projects {
-  background: #0b0d12;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
-}
-
-.project-card {
-  padding: 2rem;
-  background: linear-gradient(
-    180deg,
-    #121526,
-    #0b0d12
-  );
-  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.3s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
+/* The Mouse-Follow Glow */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+/* =========================
+   FLAPPY GAME OVERLAY
+========================= */
+#game-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(11, 13, 18, 0.98);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#game-container {
+  position: relative;
+  border: 4px solid #6366f1;
+  border-radius: 12px;
+  box-shadow: 0 0 50px rgba(99, 102, 241, 0.3);
+  background: #000;
+  overflow: hidden;
+}
+
+#game-ui {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 80%;
+}
+
+#score-display {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 2.5rem;
+  font-family: 'Space Grotesk';
+  font-weight: bold;
+  color: #6366f1;
+}
+
+canvas {
+  display: block;
 }
 
 /* =========================
    FOOTER
 ========================= */
-
 footer {
-  padding: 3rem 8vw;
+  padding: 4rem 8vw;
   text-align: center;
   font-size: 0.9rem;
-  color: #9aa0b4;
+  color: #6a7280;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media (max-width: 768px) {
-  nav ul {
-    display: none;
-  }
-
-  .buttons {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  nav ul { display: none; }
+  .section { padding: 4rem 8vw; }
 }
-.fade-in {
-  opacity: 1;
-  transform: none;
-}
-
