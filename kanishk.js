@@ -1,171 +1,115 @@
-// --- 1. CORE LOGIC & ANIMATIONS ---
-const observer = new IntersectionObserver(entries => {
+// Intersection Observer
+const obs = new IntersectionObserver(entries => {
     entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(s => observer.observe(s));
+});
+document.querySelectorAll('.fade-in').forEach(s => obs.observe(s));
 
-// --- 2. GAME ENGINE ---
+// GAME CORE
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 const overlay = document.getElementById('master-game-overlay');
-const uiBox = document.getElementById('game-ui-box');
-const scoreLabel = document.getElementById('game-score-label');
+const scoreDisp = document.getElementById('score-text');
+const menu = document.getElementById('menu-overlay');
 
-let currentMode = ''; // 'flappy' or 'runner'
+canvas.width = 400; canvas.height = 550;
+
 let gameRunning = false;
-let gameLoopId;
 let score = 0;
-let frames = 0;
+let mode = ''; // flappy or runner
+let bird, pipes, runner, bugs, frame = 0;
 
-const playerImg = new Image();
-playerImg.src = 'me.jpg'; // REPLACE with your photo filename
+const img = new Image();
+img.src = 'me.jpg'; // MAKE SURE THIS FILE EXISTS!
 
-// Dimensions
-function setGameSize() {
-    canvas.width = window.innerWidth < 450 ? 350 : 400;
-    canvas.height = 550;
-}
-
-function openGame(mode) {
-    currentMode = mode;
-    setGameSize();
+function openGame(m) {
+    mode = m;
     overlay.style.display = 'flex';
-    score = 0;
-    frames = 0;
-    scoreLabel.innerText = "Score: 0";
-    uiBox.style.display = 'block';
-
-    if(mode === 'flappy') {
-        document.getElementById('ui-title').innerText = "Flappy Math";
-        document.getElementById('ui-desc').innerText = "Use Space or Click to jump through the bugs.";
-    } else {
-        document.getElementById('ui-title').innerText = "Subway Solver";
-        document.getElementById('ui-desc').innerText = "Use Arrow Keys to dodge Logic Errors.";
-    }
-    
-    document.getElementById('ui-start-btn').onclick = startGame;
-}
-
-function startGame() {
-    uiBox.style.display = 'none';
-    score = 0; frames = 0;
-    gameRunning = true;
-    if(currentMode === 'flappy') initFlappy();
-    else initRunner();
-    animate();
+    menu.style.display = 'block';
+    document.getElementById('menu-title').innerText = m === 'flappy' ? 'Flappy Kanishk' : 'Subway Solver';
+    document.getElementById('start-btn').onclick = startGame;
 }
 
 function closeGame() {
     overlay.style.display = 'none';
     gameRunning = false;
-    cancelAnimationFrame(gameLoopId);
 }
 
-// --- FLAPPY LOGIC ---
-let bird, pipes;
-function initFlappy() {
-    bird = { x: 50, y: 250, w: 45, h: 45, v: 0, gravity: 0.5, jump: -8 };
-    pipes = [];
+function startGame() {
+    menu.style.display = 'none';
+    score = 0; frame = 0;
+    if(mode === 'flappy') {
+        bird = { x: 50, y: 200, v: 0, g: 0.5, jump: -8 };
+        pipes = [];
+    } else {
+        runner = { lane: 1, y: 480 };
+        bugs = [];
+    }
+    gameRunning = true;
+    gameLoop();
 }
 
-// --- RUNNER LOGIC ---
-let player, bugs;
-function initRunner() {
-    player = { lane: 1, y: 470, w: 50, h: 50 }; // Lane 0, 1, or 2
-    bugs = [];
+function gameLoop() {
+    if(!gameRunning) return;
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
 }
 
 function update() {
-    frames++;
-    scoreLabel.innerText = "Score: " + score;
+    frame++;
+    scoreDisp.innerText = "Score: " + score;
 
-    if(currentMode === 'flappy') {
-        bird.v += bird.gravity; bird.y += bird.v;
-        if(bird.y > canvas.height || bird.y < 0) gameOver();
-        
-        if(frames % 90 === 0) {
-            let gap = 150;
-            let h = Math.random() * (canvas.height - gap - 100) + 50;
-            pipes.push({ x: canvas.width, t: h, b: canvas.height - h - gap, passed: false });
+    if(mode === 'flappy') {
+        bird.v += bird.g; bird.y += bird.v;
+        if(bird.y > 550 || bird.y < 0) endGame();
+        if(frame % 100 === 0) {
+            let h = Math.random() * 250 + 50;
+            pipes.push({ x: 400, t: h, b: 550 - h - 150, p: false });
         }
         pipes.forEach((p, i) => {
-            p.x -= 3.5;
-            // Collision
-            if(bird.x + bird.w > p.x && bird.x < p.x + 55) {
-                if(bird.y < p.t || bird.y + bird.h > canvas.height - p.b) gameOver();
-            }
-            if(!p.passed && p.x < bird.x) { score++; p.passed = true; }
-            if(p.x < -60) pipes.splice(i, 1);
+            p.x -= 3;
+            if(bird.x+30 > p.x && bird.x < p.x+50 && (bird.y < p.t || bird.y+30 > 550-p.b)) endGame();
+            if(!p.p && p.x < 50) { score++; p.p = true; }
+            if(p.x < -50) pipes.splice(i, 1);
         });
     } else {
-        // Runner logic
-        if(frames % 60 === 0) {
-            bugs.push({ lane: Math.floor(Math.random()*3), y: -50 });
-        }
+        if(frame % 60 === 0) bugs.push({ lane: Math.floor(Math.random()*3), y: -50 });
         bugs.forEach((b, i) => {
             b.y += (5 + score/5);
-            let playerX = player.lane * (canvas.width/3) + (canvas.width/6) - 25;
-            let bugX = b.lane * (canvas.width/3) + (canvas.width/6) - 30;
-            // Collision
-            if(b.y > player.y - 40 && b.y < player.y + 40 && b.lane === player.lane) gameOver();
-            if(b.y > canvas.height) { bugs.splice(i,1); score++; }
+            let px = runner.lane * 133 + 50;
+            if(b.y > 450 && b.y < 520 && b.lane === runner.lane) endGame();
+            if(b.y > 550) { bugs.splice(i,1); score++; }
         });
     }
 }
 
 function draw() {
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    
-    if(currentMode === 'flappy') {
+    ctx.clearRect(0,0,400,550);
+    if(mode === 'flappy') {
         ctx.fillStyle = '#6366f1';
-        pipes.forEach(p => {
-            ctx.fillRect(p.x, 0, 55, p.t);
-            ctx.fillRect(p.x, canvas.height - p.b, 55, p.b);
-        });
-        ctx.drawImage(playerImg, bird.x, bird.y, bird.w, bird.h);
+        pipes.forEach(p => { ctx.fillRect(p.x, 0, 50, p.t); ctx.fillRect(p.x, 550-p.b, 50, p.b); });
+        ctx.drawImage(img, bird.x, bird.y, 40, 40);
     } else {
-        // Lanes
-        ctx.strokeStyle = "rgba(255,255,255,0.1)";
-        for(let i=1; i<3; i++) {
-            ctx.beginPath(); ctx.moveTo(i*canvas.width/3, 0); ctx.lineTo(i*canvas.width/3, canvas.height); ctx.stroke();
-        }
-        // Player
-        let targetX = player.lane * (canvas.width/3) + (canvas.width/6) - 25;
-        ctx.drawImage(playerImg, targetX, player.y, player.w, player.h);
-        // Bugs
-        ctx.fillStyle = "#ff4d4d";
-        bugs.forEach(b => {
-            let bugX = b.lane * (canvas.width/3) + (canvas.width/6) - 30;
-            ctx.fillRect(bugX, b.y, 60, 30);
-            ctx.fillStyle = "white"; ctx.font = "10px sans-serif";
-            ctx.fillText("BUG", bugX + 15, b.y + 18);
-            ctx.fillStyle = "#ff4d4d";
-        });
+        ctx.strokeStyle = '#333';
+        for(let i=1; i<3; i++) { ctx.beginPath(); ctx.moveTo(i*133,0); ctx.lineTo(i*133,550); ctx.stroke(); }
+        ctx.drawImage(img, runner.lane*133 + 45, runner.y, 40, 40);
+        ctx.fillStyle = 'red';
+        bugs.forEach(b => ctx.fillRect(b.lane*133+40, b.y, 50, 20));
     }
 }
 
-function animate() {
-    if(!gameRunning) return;
-    update();
-    draw();
-    gameLoopId = requestAnimationFrame(animate);
-}
-
-function gameOver() {
+function endGame() {
     gameRunning = false;
-    cancelAnimationFrame(gameLoopId);
-    uiBox.style.display = 'block';
-    document.getElementById('ui-title').innerText = "Game Over";
-    document.getElementById('ui-desc').innerText = "Score: " + score;
-    document.getElementById('ui-start-btn').innerText = "Try Again";
+    menu.style.display = 'block';
+    document.getElementById('menu-title').innerText = "Game Over: " + score;
 }
 
-// --- INPUTS ---
-window.addEventListener('keydown', e => {
-    if(currentMode === 'flappy' && e.code === 'Space') bird.v = bird.jump;
-    if(currentMode === 'runner') {
-        if(e.key === 'ArrowLeft' && player.lane > 0) player.lane--;
-        if(e.key === 'ArrowRight' && player.lane < 2) player.lane++;
+// Controls
+window.onkeydown = e => {
+    if(mode === 'flappy' && e.code === 'Space') bird.v = bird.jump;
+    if(mode === 'runner') {
+        if(e.key === 'ArrowLeft' && runner.lane > 0) runner.lane--;
+        if(e.key === 'ArrowRight' && runner.lane < 2) runner.lane++;
     }
-});
-canvas.addEventListener('mousedown', () => { if(currentMode==='flappy') bird.v = bird.jump; });
+}
+canvas.onmousedown = () => { if(mode === 'flappy') bird.v = bird.jump; }
