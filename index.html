@@ -1,58 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shashi Bhushan | Logic & Design</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanishk | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="kanishk.css" />
 </head>
 <body>
-    <div class="gradient-bg"></div>
-    
-    <nav>
-        <div class="logo">S.B.K.</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <div class="status-pill" id="live-status">System Active</div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Kanishk</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero section">
+    <div class="container hero-content fade-in">
+      <h1>Architecting logic<br>through numbers.</h1>
+      <p>
+        Applied Mathematics student exploring the intersection of theory,
+        data, and real-world code.
+      </p>
+      <div class="buttons">
+        <a href="#projects" class="btn primary">View Work</a>
+        <a href="https://github.com/sbkanishk" target="_blank" class="btn secondary">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about fade-in">
+    <div class="container">
+      <h2>01. The Narrative</h2>
+      <p>
+        I thrive in the space between abstract proofs and practical systems.
+        Whether solving Ordinary Differential Equations or building data-driven
+        applications, my focus is always clarity and structure.
+      </p>
+      <p>
+        Outside academics: football evenings, relentless reading,
+        and volunteering through NSS.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section fade-in">
+    <div class="container">
+      <h2>02. Technical Arsenal</h2>
+
+      <div class="skills">
+        <div class="skill-card">
+          <h3>Languages</h3>
+          <p>Python, C++, R, Java</p>
         </div>
-    </nav>
 
-    <header class="hero">
-        <h1 class="reveal-text">Architecting <span>logic</span> through numbers.</h1>
-        <div class="hero-sub">
-            <p>19-year-old polymath. Navigating the convergence of Applied Math at <strong>SVNIT</strong> and Data Science at <strong>IIT Madras</strong>.</p>
+        <div class="skill-card">
+          <h3>Focus Areas</h3>
+          <p>Mathematical Modeling, Data Analysis, Algorithms</p>
         </div>
-    </header>
 
-    <main>
-        <section id="about" class="glass-card">
-            <h2>01. The Narrative</h2>
-            <p>I thrive in the space between abstract proofs and practical code. Whether I'm solving <strong>Ordinary Differential Equations</strong> or building with the <strong>MERN stack</strong>, my goal is clarity.</p>
-            <div class="habit-tags">
-                <span>⚽ Football (6-8 PM)</span>
-                <span>📚 Voracious Reader</span>
-                <span>🌍 NSS Volunteer</span>
-            </div>
-        </section>
+        <div class="skill-card">
+          <h3>Creative Tools</h3>
+          <p>Figma, Canva, Adobe Lightroom</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="tech" class="grid">
-            <div class="skill-card">
-                <h3>Technical Arsenal</h3>
-                <p>Python, C++, R, Java. Focused on Mathematical Modeling and Data Analysis.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Creative Lab</h3>
-                <p>UI/UX in Figma & Canva. Photography via Adobe Lightroom.</p>
-            </div>
-        </section>
-    </main>
+  <!-- PROJECTS -->
+  <section id="projects" class="section projects fade-in">
+    <div class="container">
+      <h2>03. Selected Work</h2>
 
-    <footer>
-        <p>© 2026 Shashi Bhushan Kanishk. Crafted with logic and curiosity.</p>
-    </footer>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p>
+            Personal portfolio built with HTML, CSS, and JavaScript,
+            focused on clean structure and performance.
+          </p>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="project-card">
+          <h3>Mathematical Modeling Project</h3>
+          <p>
+            Numerical methods and simulations for real-world systems
+            using Python and scientific libraries.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section fade-in">
+    <div class="container">
+      <h2>04. Contact</h2>
+      <p>
+        Reach out if you want to collaborate, discuss math,
+        or build something that actually makes sense.
+      </p>
+      <p>
+        <a href="mailto:your-email@example.com">your-email@example.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Shashi Bhushan Kanishk. Crafted with logic and curiosity.
+  </footer>
+
+  <script src="kanishk.js"></script>
 </body>
 </html>
