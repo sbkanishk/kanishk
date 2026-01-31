@@ -1,112 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kanishk | Portfolio</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="kanishk.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanishk | Portfolio</title>
+    <link rel="stylesheet" href="kanishk.css">
 </head>
-
 <body>
 
-  <nav>
-    <div class="logo">Kanishk</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#playground">Playground</a></li>
-    </ul>
-  </nav>
+    <header class="card">
+        <h1>Shashi Bhushan Kanishk</h1>
+        <p>Applied Mathematics • Data Science • Creative Coding</p>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero section fade-in">
-    <div class="container">
-      <h1>Architecting logic<br>through numbers.</h1>
-      <p class="hero-text">
-        Applied Mathematics student exploring theory, data, and code.
-      </p>
-      <div class="buttons">
-        <a href="#playground" class="btn primary">Play Games</a>
-        <a href="https://github.com/sbkanishk" target="_blank" class="btn secondary">GitHub</a>
-      </div>
-    </div>
-  </section>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-  <!-- ABOUT -->
-  <section id="about" class="section fade-in">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>
-        I’m an Applied Mathematics student who enjoys breaking problems down
-        into clean, logical structures. I like numbers, algorithms, and
-        building things that actually work instead of just sounding impressive.
-      </p>
-    </div>
-  </section>
+    <section id="about" class="card">
+        <h2>About Me</h2>
+        <p>
+            I’m a dual-degree student pursuing an Integrated M.Sc. in Applied Mathematics at SVNIT
+            and a B.S. in Data Science from IIT Madras. I enjoy problem-solving, algorithms,
+            and building creative projects that blend logic with interaction.
+        </p>
+    </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="section fade-in">
-    <div class="container">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Languages</h3>
-          <p>Python, C++, R, Java</p>
-        </div>
-        <div class="skill-card">
-          <h3>Focus</h3>
-          <p>Mathematical Modeling, Data Analysis, Algorithms</p>
-        </div>
-        <div class="skill-card">
-          <h3>Tools</h3>
-          <p>HTML, CSS, JavaScript, Git, Figma</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section id="education" class="card">
+        <h2>🎓 Education</h2>
+        <ul>
+            <li><b>Integrated M.Sc. in Applied Mathematics</b> – SVNIT (NIT Surat)</li>
+            <li><b>B.S. in Data Science & Applications</b> – IIT Madras</li>
+            <li>Higher Secondary (XII) – DAV Public School, Patna</li>
+            <li>Secondary School (X) – St. Raza International School</li>
+        </ul>
+    </section>
 
-  <!-- PLAYGROUND -->
-  <section id="playground" class="section fade-in">
-    <div class="container">
-      <h2>The Playground</h2>
+    <section id="games" class="card">
+        <h2>🎮 Mini Games</h2>
 
-      <div class="project-grid">
-        <div class="project-card" onclick="openGame('flappy')">
-          <h3>Flappy Math</h3>
-          <p>Space or click to jump</p>
-          <button class="btn primary">Play</button>
+        <div class="game-box">
+            <h3>Guess the Number</h3>
+            <p>Guess a number between 1 and 10</p>
+            <input type="number" id="guessInput" placeholder="Your guess">
+            <button id="guessBtn">Guess</button>
+            <p id="gameResult"></p>
         </div>
 
-        <div class="project-card" onclick="openGame('runner')">
-          <h3>Subway Solver</h3>
-          <p>Arrow keys to dodge</p>
-          <button class="btn primary">Play</button>
+        <div class="game-box">
+            <h3>⭐ Catch the Star</h3>
+            <p>Click the star before it escapes!</p>
+            <div id="star">⭐</div>
+            <p id="starScore">Score: 0</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GAME OVERLAY -->
-  <div id="game-overlay">
-    <div class="game-header">
-      <span id="score-text">Score: 0</span>
-      <button onclick="closeGame()">✕</button>
-    </div>
+    <section id="contact" class="card">
+        <h2>Contact</h2>
+        <p>
+            Email:
+            <a href="mailto:kansihksb2005@gmail.com">kansihksb2005@gmail.com</a>
+        </p>
+    </section>
 
-    <canvas id="gameCanvas" width="400" height="550"></canvas>
+    <footer>
+        <p>© 2024 Shashi Bhushan Kanishk</p>
+    </footer>
 
-    <div id="menu">
-      <h2 id="menu-title">Game</h2>
-      <button class="btn primary" onclick="startGame()">Start</button>
-    </div>
-  </div>
-
-  <footer>
-    © 2026 Shashi Bhushan Kanishk
-  </footer>
-
-  <script src="kanishk.js"></script>
+    <script src="kanishk.js"></script>
 </body>
 </html>
+
