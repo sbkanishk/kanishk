@@ -1,116 +1,55 @@
-// Fade-in safety (no blank page ever)
-document.querySelectorAll('.fade-in').forEach(el => {
-  el.style.opacity = 1;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================
+       NAV FEEDBACK
+    ====================== */
+    document.querySelectorAll("nav a").forEach(link => {
+        link.addEventListener("click", e => {
+            console.log(`Navigated to ${e.target.textContent}`);
+        });
+    });
+
+    /* =====================
+       GUESS THE NUMBER
+    ====================== */
+    let secretNumber = Math.floor(Math.random() * 10) + 1;
+
+    const input = document.getElementById("guessInput");
+    const button = document.getElementById("guessBtn");
+    const result = document.getElementById("gameResult");
+
+    button.addEventListener("click", () => {
+        const guess = Number(input.value);
+
+        if (!guess || guess < 1 || guess > 10) {
+            result.textContent = "❌ Enter a number between 1 and 10";
+            return;
+        }
+
+        if (guess === secretNumber) {
+            result.textContent = "🎉 Correct! New number generated.";
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+        } else {
+            result.textContent = "❌ Wrong! Try again.";
+        }
+    });
+
+    /* =====================
+       CATCH THE STAR ⭐
+    ====================== */
+    const star = document.getElementById("star");
+    const scoreText = document.getElementById("starScore");
+    let score = 0;
+
+    star.addEventListener("click", () => {
+        score++;
+        scoreText.textContent = `Score: ${score}`;
+
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 100 - 50;
+
+        star.style.transform = `translate(${x}px, ${y}px) scale(1.2)`;
+    });
+
 });
-
-// GAME LOGIC
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-const overlay = document.getElementById('game-overlay');
-const scoreText = document.getElementById('score-text');
-const menu = document.getElementById('menu');
-const menuTitle = document.getElementById('menu-title');
-
-let mode = '';
-let score = 0;
-let running = false;
-let bird, pipes, runner, bugs, frame = 0;
-
-function openGame(m) {
-  mode = m;
-  overlay.style.display = 'flex';
-  menu.style.display = 'block';
-  menuTitle.innerText = m === 'flappy' ? 'Flappy Math' : 'Subway Solver';
-}
-
-function closeGame() {
-  overlay.style.display = 'none';
-  running = false;
-}
-
-function startGame() {
-  menu.style.display = 'none';
-  score = 0;
-  frame = 0;
-  running = true;
-
-  if (mode === 'flappy') {
-    bird = { x: 60, y: 200, v: 0 };
-    pipes = [];
-  } else {
-    runner = { lane: 1 };
-    bugs = [];
-  }
-
-  loop();
-}
-
-function loop() {
-  if (!running) return;
-  update();
-  draw();
-  requestAnimationFrame(loop);
-}
-
-function update() {
-  frame++;
-  scoreText.innerText = "Score: " + score;
-
-  if (mode === 'flappy') {
-    bird.v += 0.5;
-    bird.y += bird.v;
-    if (bird.y > 550 || bird.y < 0) end();
-
-    if (frame % 100 === 0)
-      pipes.push({ x: 400, gap: 160, top: Math.random()*200+50 });
-
-    pipes.forEach((p,i) => {
-      p.x -= 3;
-      if (p.x < -50) { pipes.splice(i,1); score++; }
-    });
-  } else {
-    if (frame % 60 === 0)
-      bugs.push({ lane: Math.floor(Math.random()*3), y: -40 });
-
-    bugs.forEach((b,i) => {
-      b.y += 5;
-      if (b.y > 550) { bugs.splice(i,1); score++; }
-    });
-  }
-}
-
-function draw() {
-  ctx.clearRect(0,0,400,550);
-  ctx.fillStyle = "#6366f1";
-
-  if (mode === 'flappy') {
-    pipes.forEach(p => {
-      ctx.fillRect(p.x,0,50,p.top);
-      ctx.fillRect(p.x,p.top+p.gap,50,550);
-    });
-    ctx.fillRect(bird.x,bird.y,30,30);
-  } else {
-    bugs.forEach(b => {
-      ctx.fillRect(b.lane*133+50,b.y,40,20);
-    });
-    ctx.fillRect(runner.lane*133+60,480,30,40);
-  }
-}
-
-function end() {
-  running = false;
-  menu.style.display = 'block';
-  menuTitle.innerText = "Game Over — Score " + score;
-}
-
-window.onkeydown = e => {
-  if (mode === 'flappy' && e.code === 'Space') bird.v = -8;
-  if (mode === 'runner') {
-    if (e.key === 'ArrowLeft' && runner.lane > 0) runner.lane--;
-    if (e.key === 'ArrowRight' && runner.lane < 2) runner.lane++;
-  }
-};
-
-canvas.onclick = () => {
-  if (mode === 'flappy') bird.v = -8;
-};
