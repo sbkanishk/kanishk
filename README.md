@@ -1,5 +1,5 @@
 # 🌐 Kanishk's Personal Portfolio
-sbkanishk.github.io/kanishk/
+[sbkanishk.github.io/kanishk/](https://sbkanishk.github.io/kanishk/)
 
 A modern, interactive portfolio website showcasing my journey as an **Integrated M.Sc. Applied Mathematics** student at **Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat**.
 
