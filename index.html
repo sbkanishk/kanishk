@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kanishk — Applied Mathematics Student &amp; Developer, SVNIT Surat</title>
+<meta name="description" content="Kanishk is an Applied Mathematics student at SVNIT Surat, building data-driven and full-stack web projects at the intersection of mathematics, sustainability, and technology." />
+<meta name="keywords" content="Kanishk, SVNIT Surat, Applied Mathematics, Python Developer, Data Science, Portfolio, Web Developer" />
+<meta name="author" content="Kanishk" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Kanishk — Applied Mathematics Student &amp; Developer" />
+<meta property="og:description" content="Turning mathematics, data, and creativity into impactful digital experiences." />
+<meta property="og:type" content="website" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%235B5FEF%22>∑</text></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <svg class="loader-glyph" viewBox="0 0 120 120" width="72" height="72">
+      <circle cx="60" cy="60" r="46" fill="none" stroke="var(--stroke)" stroke-width="1.5"/>
+      <path id="loader-path" d="M14,60 C14,35 35,14 60,14 C85,14 106,35 106,60" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <p class="loader-text">lim<span class="loader-sub">x→∞</span> f(x) = kanishk.dev</p>
+    <div class="loader-bar"><span></span></div>
+  </div>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<!-- ============ EASTER EGG TOAST ============ -->
+<div class="egg-toast" id="eggToast" role="status" aria-live="polite"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand" aria-label="Back to top">
+      <span class="brand-mark">∫</span><span class="brand-name">kanishk</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about"><span class="nav-index">§1</span>About</a>
+      <a href="#skills"><span class="nav-index">§2</span>Skills</a>
+      <a href="#projects"><span class="nav-index">§3</span>Projects</a>
+      <a href="#journey"><span class="nav-index">§4</span>Journey</a>
+      <a href="#achievements"><span class="nav-index">§5</span>Achievements</a>
+      <a href="#contact"><span class="nav-index">§6</span>Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle light and dark mode" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about">01 · About</a>
+    <a href="#skills">02 · Skills</a>
+    <a href="#projects">03 · Projects</a>
+    <a href="#journey">04 · Journey</a>
+    <a href="#achievements">05 · Achievements</a>
+    <a href="#interests">06 · Interests</a>
+    <a href="#contact">07 · Contact</a>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <p class="plot-readout" id="plotReadout" aria-hidden="true">x(t) = sin(3.00t)   y(t) = sin(2.00t + π/3)</p>
+  <div class="hero-grid-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow reveal-line"><span class="eyebrow-dot"></span>Applied Mathematics · SVNIT Surat</p>
+    <h1 class="hero-title">
+      <span class="reveal-line">Hi, I'm</span>
+      <span class="reveal-line hero-name">Kanishk<span class="accent-dot">.</span></span>
+    </h1>
+    <p class="hero-role reveal-line">Integrated M.Sc. Applied Mathematics Student</p>
+    <p class="hero-tagline reveal-line">Turning mathematics, data, and creativity into impactful digital experiences.</p>
+    <div class="hero-actions reveal-line">
+      <a href="#projects" class="btn btn-primary">
+        <span>View Projects</span>
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <a href="https://drive.google.com/file/d/1P4Uvy6SCUxGb4Frpn6_XEDG_ybEydQQC/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-ghost">Resume</a>
+      <a href="https://www.linkedin.com/in/shashi-bhushan-kanishk/" target="_blank" rel="noopener" class="btn btn-icon" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg>
+      </a>
+      <a href="https://github.com/sbkanishk" target="_blank" rel="noopener" class="btn btn-icon" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.06.78 2.15v3.18c0 .3.21.66.8.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"/></svg>
+      </a>
+    </div>
+    <button class="scroll-cue" id="scrollCue" aria-label="Scroll to About">
+      <span>scroll</span>
+      <svg viewBox="0 0 16 24" width="14" height="22"><rect x="1" y="1" width="14" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="7" r="2.2" fill="currentColor" class="scroll-dot"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <p class="eyebrow reveal">§1 — About</p>
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <h2 class="section-title">Where proofs meet products.</h2>
+        <p>I'm a third-year Integrated M.Sc. Applied Mathematics student at Sardar Vallabhbhai National Institute of Technology, Surat. Somewhere between differential equations and debugging sessions, I found the thing I actually love: taking an abstract idea — a distribution, a dataset, a half-formed concept — and shaping it into something people can use.</p>
+        <p>I split my time between mathematical thinking and full-stack building. I've analyzed real-world datasets through the lens of statistics and optimization, shipped web projects end-to-end, and written long-form pieces breaking down the math behind everyday phenomena. Sustainability is a thread that runs through a lot of my project choices — I like problems where rigor and impact meet.</p>
+        <p>Outside of notebooks and codebases, I'm usually watching football, deep in a Marvel timeline debate, or mapping out Westerosi family trees for fun. I'm always building something, and always learning the next thing that lets me build it better.</p>
+      </div>
+      <div class="fact-cards reveal">
+        <div class="fact-card" style="--i:0; --r:-2deg;"><span class="fact-emoji">⚽</span><span class="fact-label">Football enthusiast</span></div>
+        <div class="fact-card" style="--i:1; --r:1.5deg;"><span class="fact-emoji">🦸</span><span class="fact-label">Marvel fan</span></div>
+        <div class="fact-card" style="--i:2; --r:-1deg;"><span class="fact-emoji">🐉</span><span class="fact-label">Game of Thrones fan</span></div>
+        <div class="fact-card" style="--i:3; --r:2deg;"><span class="fact-emoji">💡</span><span class="fact-label">Builds things from ideas</span></div>
+        <div class="fact-card" style="--i:4; --r:-1.5deg;"><span class="fact-emoji">📚</span><span class="fact-label">Always learning something new</span></div>
+      </div>
+      <p class="margin-note">these are non-negotiable, actually</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section section-alt" id="skills">
+  <div class="section-inner">
+    <p class="eyebrow reveal">§2 — Skills</p>
+    <h2 class="section-title reveal">The toolkit behind the work.</h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h3><span class="skill-group-mark">{ }</span>Programming</h3>
+        <ul class="skill-list">
+          <li><span>Python</span></li>
+          <li><span>JavaScript</span></li>
+          <li><span>HTML</span></li>
+          <li><span>CSS</span></li>
+          <li><span>Git</span></li>
+          <li><span>GitHub</span></li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <h3><span class="skill-group-mark">∑</span>Mathematics</h3>
+        <ul class="skill-list">
+          <li><span>Linear Algebra</span></li>
+          <li><span>Probability</span></li>
+          <li><span>Statistics</span></li>
+          <li><span>Optimization</span></li>
+          <li><span>Differential Equations</span></li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <h3><span class="skill-group-mark">⌘</span>Tools</h3>
+        <ul class="skill-list">
+          <li><span>VS Code</span></li>
+          <li><span>Lovable</span></li>
+          <li><span>GitHub Pages</span></li>
+          <li><span>Figma</span></li>
+          <li><span>Notion</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section" id="projects">
+  <div class="section-inner">
+    <p class="eyebrow reveal">§3 — Featured Projects</p>
+    <h2 class="section-title reveal">Ideas, shipped.</h2>
+    <div class="projects-grid">
+
+      <article class="project-card reveal">
+        <div class="project-visual" data-motif="lca">
+          <svg viewBox="0 0 200 120"><polyline points="10,100 45,60 80,80 115,30 150,50 190,15" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="190" cy="15" r="3" fill="currentColor"/></svg>
+        </div>
+        <div class="project-body">
+          <h3>Fashion Industry Life Cycle Assessment</h3>
+          <p>An interactive site breaking down the environmental life cycle of the fashion industry — from raw material to disposal — making sustainability data approachable and visual.</p>
+          <div class="tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Data Viz</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/sbkanishk" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+            <a href="https://sbkanishk.github.io/lca-on-fashion-industry/" target="_blank" rel="noopener" class="link-btn link-btn-primary">Live Demo ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-visual" data-motif="got">
+          <svg viewBox="0 0 200 120"><path d="M100 15 L115 55 L155 55 L122 78 L135 118 L100 92 L65 118 L78 78 L45 55 L85 55 Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <div class="project-body">
+          <h3>Houses of Westeros — GoT Guide</h3>
+          <p>A static, dependency-free genealogical reference site mapping the great houses of Game of Thrones — family trees, lineages, and lore in a clean, browsable interface.</p>
+          <div class="tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/sbkanishk" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+            <a href="https://sbkanishk.github.io/Game-of-Thrones/" target="_blank" rel="noopener" class="link-btn link-btn-primary">Live Demo ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-visual" data-motif="marvel">
+          <svg viewBox="0 0 200 120"><path d="M20 100 L50 30 L75 80 L100 20 L125 80 L150 30 L180 100" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="project-body">
+          <h3>Marvel Streets</h3>
+          <p>A fan-built showcase exploring the Marvel universe — characters, timelines, and street-level storytelling wrapped in a bold, comic-inspired interface.</p>
+          <div class="tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/sbkanishk" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+            <a href="https://sbkanishk.github.io/Marvel-Streets/" target="_blank" rel="noopener" class="link-btn link-btn-primary">Live Demo ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-visual" data-motif="portfolio">
+          <svg viewBox="0 0 200 120"><rect x="20" y="20" width="160" height="80" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="20" y1="40" x2="180" y2="40" stroke="currentColor" stroke-width="1.2"/><circle cx="32" cy="30" r="2.5" fill="currentColor"/></svg>
+        </div>
+        <div class="project-body">
+          <h3>Personal Portfolio Website</h3>
+          <p>This site — a from-scratch, animation-driven portfolio built to feel sleek, fast, and unmistakably mine, from the custom cursor down to the hero canvas.</p>
+          <div class="tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/sbkanishk" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+            <a href="#hero" class="link-btn link-btn-primary">You're on it ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="section section-alt" id="journey">
+  <div class="section-inner">
+    <p class="eyebrow reveal">§4 — Journey</p>
+    <h2 class="section-title reveal">A timeline, not a straight line.</h2>
+    <div class="timeline">
+      <div class="timeline-line" aria-hidden="true"><span class="timeline-progress" id="timelineProgress"></span></div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-node"></div>
+        <div class="timeline-card">
+          <span class="timeline-tag">Year 1</span>
+          <h3>Started Applied Mathematics at SVNIT</h3>
+          <p>Began the Integrated M.Sc. program at SVNIT Surat, laying the foundation in pure and applied mathematics.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-node"></div>
+        <div class="timeline-card">
+          <span class="timeline-tag">Year 1–2</span>
+          <h3>Learned Python</h3>
+          <p>Picked up Python as a first language for computation, scripting, and data analysis — the bridge between theory and code.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-node"></div>
+        <div class="timeline-card">
+          <span class="timeline-tag">Year 2</span>
+          <h3>Built first website</h3>
+          <p>Shipped a first static site with HTML, CSS, and JavaScript, and got hooked on turning ideas into interfaces.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-node"></div>
+        <div class="timeline-card">
+          <span class="timeline-tag">Year 2–3</span>
+          <h3>Created a sustainability project</h3>
+          <p>Built the Fashion Industry Life Cycle Assessment site, combining data storytelling with environmental impact.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-node"></div>
+        <div class="timeline-card">
+          <span class="timeline-tag">Now</span>
+          <h3>Building a production-grade backend API</h3>
+          <p>Working through an intensive backend engineering program — FastAPI, SQLAlchemy, PostgreSQL, MongoDB, JWT, and OAuth 2.0.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-node"></div>
+        <div class="timeline-card">
+          <span class="timeline-tag">Next</span>
+          <h3>Exploring AI and full-stack development</h3>
+          <p>Going deeper into applied AI, system design, and shipping full-stack products end to end.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACHIEVEMENTS ============ -->
+<section class="section" id="achievements">
+  <div class="section-inner">
+    <p class="eyebrow reveal">§5 — Achievements</p>
+    <h2 class="section-title reveal">Proof of work.</h2>
+    <div class="proof-list">
+      <div class="proof-row reveal">
+        <span class="proof-num">Prop. 01</span>
+        <div class="proof-body">
+          <h3>Integrated M.Sc. Applied Mathematics</h3>
+          <p>Third-year student at Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat — one of India's leading NITs.</p>
+        </div>
+        <span class="proof-tag">Academics</span>
+      </div>
+      <div class="proof-row reveal">
+        <span class="proof-num">Prop. 02</span>
+        <div class="proof-body">
+          <h3>Backend Engineering Internship</h3>
+          <p>Selected for an intensive program building a production-grade e-commerce backend API with FastAPI, SQLAlchemy, and PostgreSQL.</p>
+        </div>
+        <span class="proof-tag">Engineering</span>
+      </div>
+      <div class="proof-row reveal">
+        <span class="proof-num">Prop. 03</span>
+        <div class="proof-body">
+          <h3>Published Technical Writing</h3>
+          <p>Authored a long-form Medium article on power-law distributions, paired with an original data pipeline and custom infographic.</p>
+        </div>
+        <span class="proof-tag">Writing</span>
+      </div>
+      <div class="proof-row reveal">
+        <span class="proof-num">Prop. 04</span>
+        <div class="proof-body">
+          <h3>End-to-End Data Science Pipeline</h3>
+          <p>Designed and built a full IPL analytics pipeline — power-law fitting, a composite Impact Score model, and multi-panel visualizations.</p>
+        </div>
+        <span class="proof-tag">Data Science</span>
+      </div>
+      <div class="proof-row reveal">
+        <span class="proof-num">Prop. 05</span>
+        <div class="proof-body">
+          <h3>Four Shipped Web Projects</h3>
+          <p>Independently designed, built, and deployed multiple live websites spanning sustainability, data, and fandom-driven passion projects.</p>
+        </div>
+        <span class="proof-tag">Web Dev</span>
+      </div>
+      <div class="proof-row reveal">
+        <span class="proof-num">Prop. 06</span>
+        <div class="proof-body">
+          <h3>Systems-Level Problem Solving</h3>
+          <p>Diagnosed and resolved a low-level Windows/NVMe sector-size conflict blocking a SQL Server installation via a targeted registry fix.</p>
+        </div>
+        <span class="proof-tag">Debugging</span>
+      </div>
+      <div class="proof-end reveal" aria-hidden="true">∎</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTERESTS ============ -->
+<section class="section section-alt" id="interests">
+  <div class="section-inner">
+    <p class="eyebrow reveal">§6 — Interests</p>
+    <h2 class="section-title reveal">What keeps me curious.</h2>
+    <div class="interests-grid">
+      <button class="interest-chip reveal" data-msg="f(x) is my happy place. ∎">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h9M6 4c0 8-3 12-3 16h12M9 12h6"/></svg>
+        Mathematics
+      </button>
+      <button class="interest-chip football-chip reveal" data-msg="⚽ GOAAAL! You found the easter egg.">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></svg>
+        Football
+      </button>
+      <button class="interest-chip reveal" data-msg="Reduce, reuse, refactor.">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v6M12 3c3 1 5 3 6 6M12 3C9 4 7 6 6 9M4 15c1 3 4 5 8 5s7-2 8-5"/></svg>
+        Sustainability
+      </button>
+      <button class="interest-chip reveal" data-msg="Currently training a model. And myself.">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.5 4.5l2 2M17.5 17.5l2 2M19.5 4.5l-2 2M6.5 17.5l-2 2"/></svg>
+        Artificial Intelligence
+      </button>
+      <button class="interest-chip reveal" data-msg="Ctrl+S on every idea I have.">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+        Technology
+      </button>
+      <button class="interest-chip reveal" data-msg="Currently mid-chapter, probably two books at once.">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5.5C6 4.5 9 4.5 12 6c3-1.5 6-1.5 8-.5v13c-2-1-5-1-8 .5-3-1.5-6-1.5-8-.5z"/></svg>
+        Reading
+      </button>
+      <button class="interest-chip reveal" data-msg="Ask me about the last Marvel or GoT theory I fell into.">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M9 9l4 2.5L9 14z"/></svg>
+        Movies
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <p class="eyebrow reveal">§7 — Contact</p>
+    <h2 class="section-title reveal">Let's build something.</h2>
+    <p class="contact-lead reveal">Open to internships, collaborations, and interesting problems at the intersection of math and software. The best way to reach me is right here.</p>
+
+    <div class="contact-grid reveal">
+      <a href="mailto:shashibhushankanishk@gmail.com" class="contact-card contact-card-wide">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        <div>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">shashibhushankanishk@gmail.com</span>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://www.linkedin.com/in/shashi-bhushan-kanishk/" target="_blank" rel="noopener" class="contact-card">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg>
+        <div><span class="contact-label">LinkedIn</span><span class="contact-value">/shashi-bhushan-kanishk</span></div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://github.com/sbkanishk" target="_blank" rel="noopener" class="contact-card">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.06.78 2.15v3.18c0 .3.21.66.8.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"/></svg>
+        <div><span class="contact-label">GitHub</span><span class="contact-value">@sbkanishk</span></div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://medium.com/@sbkanishk" target="_blank" rel="noopener" class="contact-card">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 6.5c0-.6-.5-1.1-1.1-1.1H3v-.4h5.5l4.3 9.4 3.7-9.4H21v.4h-.1c-.6 0-1.1.5-1.1 1.1v11c0 .6.5 1.1 1.1 1.1h.1v.4h-6.4v-.4h.1c.6 0 1.1-.5 1.1-1.1V8l-4.5 11.4h-.5L5.6 8v9.3c0 .6.5 1.1 1.4 1.1v.4H3v-.4c.9 0 1.4-.5 1.4-1.1V6.5H4z"/></svg>
+        <div><span class="contact-label">Medium</span><span class="contact-value">@sbkanishk</span></div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://x.com/sbkanishk" target="_blank" rel="noopener" class="contact-card">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.2L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.6L18.9 2zm-1.2 18h1.7L7.4 3.9H5.6L17.7 20z"/></svg>
+        <div><span class="contact-label">X</span><span class="contact-value">@sbkanishk</span></div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://www.instagram.com/sb_kanishk/" target="_blank" rel="noopener" class="contact-card">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        <div><span class="contact-label">Instagram</span><span class="contact-value">@sb_kanishk</span></div>
+        <span class="contact-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="section-inner footer-inner">
+    <p>© <span id="year"></span> Kanishk. Built from scratch, one section at a time.</p>
+    <p class="footer-hint">psst — try the <kbd>↑↑↓↓←→←→BA</kbd> code.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
